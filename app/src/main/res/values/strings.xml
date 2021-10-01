@@ -3,4 +3,9 @@
     <string name="tab_text_1">Alta</string>
     <string name="tab_text_2">Modificacion</string>
     <string name="tab_text_3">Listado</string>
+    <string-array name="categoria">
+        <item>verdura</item>
+        <item>lacteos</item>
+        <item>carniceria</item>
+    </string-array>
 </resources>
