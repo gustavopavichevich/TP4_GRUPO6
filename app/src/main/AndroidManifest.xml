@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".fragments_modificacion"
-            android:exported="true" />
-        <activity
             android:name="com.example.tp4Grupo6.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
