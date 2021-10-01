@@ -1,11 +1,13 @@
-package com.example.tp4Grupo6.ui.main;
+package myapplication.ui.main;
 
 import android.content.Context;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
 import com.example.myapplication.R;
 
 /**

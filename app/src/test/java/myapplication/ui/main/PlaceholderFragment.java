@@ -1,16 +1,20 @@
-package com.example.tp4Grupo6.ui.main;
+package myapplication.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.annotation.Nullable;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.myapplication.AltaFragment;
+import com.example.myapplication.ListadoFragment;
+import com.example.myapplication.ModificacionFragment;
 import com.example.myapplication.databinding.FragmentMainBinding;
 
 /**
@@ -23,13 +27,24 @@ public class PlaceholderFragment extends Fragment {
     private PageViewModel pageViewModel;
 private FragmentMainBinding binding;
 
-    public static PlaceholderFragment newInstance(int index) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARG_SECTION_NUMBER, index);
-        fragment.setArguments(bundle);
+//    public static PlaceholderFragment newInstance(int index) {
+//        PlaceholderFragment fragment = new PlaceholderFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putInt(ARG_SECTION_NUMBER, index);
+//        fragment.setArguments(bundle);
+//        return fragment;
+//    }
+
+    public static Fragment newInstance(int index) {
+    Fragment fragment = null;
+    switch (index){
+        case 1:fragment=new AltaFragment();break;
+        case 2:fragment=new ModificacionFragment();break;
+        case 3:fragment=new ListadoFragment();break;
+    }
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

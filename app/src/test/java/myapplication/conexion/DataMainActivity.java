@@ -1,15 +1,4 @@
-package com.example.tp4Grupo6.conexion;
-
-import android.content.Context;
-import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
+package myapplication.conexion;
 
 
 

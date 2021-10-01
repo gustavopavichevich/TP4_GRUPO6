@@ -1,4 +1,4 @@
-package com.example.tp4Grupo6.conexion;
+package myapplication.conexion;
 
 public class DataBD {
 

@@ -1,19 +1,20 @@
-package com.example.myapplication;
+package myapplication;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
+import com.example.myapplication.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment_modificacion#newInstance} factory method to
+ * Use the {@link ModificacionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_modificacion extends Fragment {
+public class ModificacionFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +25,7 @@ public class Fragment_modificacion extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Fragment_modificacion() {
+    public ModificacionFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +35,11 @@ public class Fragment_modificacion extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_modificacion.
+     * @return A new instance of fragment ModificacionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_modificacion newInstance(String param1, String param2) {
-        Fragment_modificacion fragment = new Fragment_modificacion();
+    public static ModificacionFragment newInstance(String param1, String param2) {
+        ModificacionFragment fragment = new ModificacionFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

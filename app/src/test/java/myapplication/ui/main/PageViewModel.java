@@ -1,4 +1,4 @@
-package com.example.tp4Grupo6.ui.main;
+package myapplication.ui.main;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
