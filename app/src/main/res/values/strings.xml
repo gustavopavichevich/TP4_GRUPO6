@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TP4</string>
+    <string name="tab_text_1">Alta</string>
+    <string name="tab_text_2">Modificacion</string>
+    <string name="tab_text_3">Listado</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="texto_alta">Fragmento ALTA</string>
+    <string name="texto_modif">Fragmento MODIFICACION</string>
+    <string name="texto_listado">Fragmento LISTADO</string>
+</resources>
