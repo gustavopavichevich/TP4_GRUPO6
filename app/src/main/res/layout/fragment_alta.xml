@@ -12,7 +12,7 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
-        android:id="@+id/txt_id"
+        android:id="@+id/linLayModificar"
         android:layout_width="397dp"
         android:layout_height="342dp"
         android:orientation="vertical"
