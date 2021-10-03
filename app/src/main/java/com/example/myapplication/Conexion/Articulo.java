@@ -9,7 +9,7 @@ public class Articulo {
     int stock;
     String categoria;
 
-    public SpinnerAdapter getcategoria() {
+    public String getcategoria() {
         return categoria;
     }
 

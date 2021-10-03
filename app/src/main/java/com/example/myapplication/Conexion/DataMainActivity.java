@@ -43,38 +43,15 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             ResultSet rs = st.executeQuery("SELECT * FROM articulo");
             result2 = " ";
 
-<<<<<<< HEAD
             Articulo articulo;
             while (rs.next()) {
                 articulo = new Articulo();
                 articulo.setId(rs.getInt("id"));
                 articulo.setNombre(rs.getString("nombre"));
                 articulo.setStock(rs.getInt("stock"));
-                articulo.setIdcategoria(rs.getInt("idcategoria"));
+                articulo.setcategoria(rs.getString("idcategoria"));
                 listaArticulos.add(articulo);
-=======
-        @Override
-        protected String doInBackground(String... urls) {
-            String response = "";
 
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection(DataBD.urlMySQL, DataBD.user, DataBD.pass);
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM articulo");
-                result2 = " ";
-
-                Articulo articulo;
-                while(rs.next()) {
-                    articulo = new Articulo();
-                    articulo.setId(rs.getInt("id"));
-                    articulo.setNombre(rs.getString("nombre"));
-                    articulo.setStock(rs.getInt("stock"));
-                    articulo.setcategoria(rs.getString("categoria"));
-                    listaArticulos.add(articulo);
-                }
-                response = "Conexion exitosa";
->>>>>>> origin/Pablorama
             }
             response = "Conexion exitosa";
         } catch (Exception e) {
@@ -84,48 +61,27 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
         return response;
 
     }
-    protected String updateArticulo(String... urls) {
-        String response = "";
-
+    protected void arctualizarArticulo(Articulo articulo) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataBD.urlMySQL, DataBD.user, DataBD.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM articulo");
-            result2 = " ";
-
-            Articulo articulo;
-            while (rs.next()) {
-                articulo = new Articulo();
-                articulo.setId(rs.getInt("id"));
-                articulo.setNombre(rs.getString("nombre"));
-                articulo.setStock(rs.getInt("stock"));
-                articulo.setIdcategoria(rs.getInt("idcategoria"));
-                listaArticulos.add(articulo);
-            }
-            response = "Conexion exitosa";
+            st.executeUpdate("UPDATE articulo SET (id,nombre,stock,categoria) VALUES ("+articulo.getId()+","+articulo.getNombre()+","+articulo.getStock()+","+articulo.getcategoria()+") WHERE id = "+articulo.getId());
         } catch (Exception e) {
             e.printStackTrace();
-            result2 = "Conexion no exitosa";
         }
-        return response;
-
     }
     public void insertarArticulo(Articulo articulo) {
-        String response = "";
-
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataBD.urlMySQL, DataBD.user, DataBD.pass);
             Statement st = con.createStatement();
-            st.executeUpdate("INSERT INTO Articulo VALUES ("+articulo.Id+","+articulo.nombre+","+articulo.stock+","+articulo.categoria");
-            result2 = " ";
+            st.executeUpdate("INSERT INTO articulo VALUES ("+articulo.getId()+","+articulo.getNombre()+","+articulo.getStock()+","+articulo.getcategoria()+")");
         } catch (Exception e) {
             e.printStackTrace();
-            result2 = "Conexion no exitosa";
         }
     }
-    public List listaArticulos() throws SQLException, ClassNotFoundException {
+    public List listarArticulos() throws SQLException, ClassNotFoundException {
         List<Articulo> listaArticulos = new ArrayList();
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -139,7 +95,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                 articulo.setId(rs.getInt("id"));
                 articulo.setNombre(rs.getString("nombre"));
                 articulo.setStock(rs.getInt("stock"));
-                articulo.setIdcategoria(rs.getInt("idcategoria"));
+                articulo.setcategoria(rs.getString("idcategoria"));
                 listaArticulos.add(articulo);
             }
             return listaArticulos;
