@@ -5,14 +5,14 @@ public class Articulo {
     int Id;
     String nombre;
     int stock;
-    int idcategoria;
+    String categoria;
 
-    public int getIdcategoria() {
-        return idcategoria;
+    public String getcategoria() {
+        return categoria;
     }
 
-    public void setIdcategoria(int idcategoria) {
-        this.idcategoria = idcategoria;
+    public void setcategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public int getStock() {
