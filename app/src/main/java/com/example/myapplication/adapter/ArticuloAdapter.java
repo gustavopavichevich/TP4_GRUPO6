@@ -26,10 +26,10 @@ public class ArticuloAdapter extends ArrayAdapter<Articulo> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View item = inflater.inflate(R.layout.list_template, null);
 
-        TextView tvid = (TextView) item.findViewById(R.id.idC);
-        TextView tvdni = (TextView) item.findViewById(R.id.dni);
-        TextView tvnombre = (TextView) item.findViewById(R.id.nombre);
-        TextView tvapellido = (TextView) item.findViewById(R.id.apellido);
+        TextView tvid = (TextView) item.findViewById(R.id.et_id);
+        TextView tvnombre = (TextView) item.findViewById(R.id.et_nombre);
+        TextView tvStock = (TextView) item.findViewById(R.id.et_stock);
+        TextView tvcategoria = (TextView) item.findViewById(R.id.s_categoria);
 
         tvid.setText(getItem(position).getId()+"");
         tvdni.setText(getItem(position).getDni()+"");

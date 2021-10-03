@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class DataMainActivity {
+
     public class DataMainActivity extends AsyncTask<String, Void, String> {
 
 
@@ -37,7 +37,7 @@ public class DataMainActivity {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection(DataBD.urlMySQL, DataBD.user, DataBD.pass);
                 Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM cliente");
+                ResultSet rs = st.executeQuery("SELECT * FROM articulo");
                 result2 = " ";
 
                 Articulo articulo;
@@ -65,4 +65,4 @@ public class DataMainActivity {
             lvarticulo.setAdapter(adapter);
         }
     }
-}
+
