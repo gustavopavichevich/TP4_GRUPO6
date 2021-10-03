@@ -1,5 +1,7 @@
 package com.example.myapplication.Conexion;
 
+import android.widget.SpinnerAdapter;
+
 public class Articulo {
 
     int Id;
@@ -7,7 +9,7 @@ public class Articulo {
     int stock;
     String categoria;
 
-    public String getcategoria() {
+    public SpinnerAdapter getcategoria() {
         return categoria;
     }
 
