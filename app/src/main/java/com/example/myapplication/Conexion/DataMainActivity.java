@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ListView;
 
+import com.example.myapplication.adapter.ArticuloAdapter;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -46,7 +48,7 @@ import java.util.ArrayList;
                     articulo.setId(rs.getInt("id"));
                     articulo.setNombre(rs.getString("nombre"));
                     articulo.setStock(rs.getInt("stock"));
-                    articulo.setIdcategoria(rs.getInt("idcategoria"));
+                    articulo.setcategoria(rs.getString("categoria"));
                     listaArticulos.add(articulo);
                 }
                 response = "Conexion exitosa";
