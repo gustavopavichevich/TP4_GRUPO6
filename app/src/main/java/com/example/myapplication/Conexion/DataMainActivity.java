@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class DataMainActivity extends AsyncTask<String, Void, String> {
@@ -49,7 +51,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                 articulo.setId(rs.getInt("id"));
                 articulo.setNombre(rs.getString("nombre"));
                 articulo.setStock(rs.getInt("stock"));
-                articulo.setcategoria(rs.getString("idcategoria"));
+                articulo.setcategoria(rs.getInt("idcategoria"));
                 listaArticulos.add(articulo);
 
             }
@@ -95,8 +97,48 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                 articulo.setId(rs.getInt("id"));
                 articulo.setNombre(rs.getString("nombre"));
                 articulo.setStock(rs.getInt("stock"));
-                articulo.setcategoria(rs.getString("idcategoria"));
+                articulo.setcategoria(rs.getInt("idcategoria"));
                 listaArticulos.add(articulo);
+            }
+            return listaArticulos;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+    public List listarIdArticulos() throws SQLException, ClassNotFoundException {
+        List<Articulo> listaArticulos = new ArrayList();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(DataBD.urlMySQL, DataBD.user, DataBD.pass);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM articulo");
+
+            Articulo articulo;
+            while (rs.next()) {
+                articulo = new Articulo();
+                articulo.setId(rs.getInt("id"));
+                articulo.setNombre(rs.getString("nombre"));
+                articulo.setStock(rs.getInt("stock"));
+                articulo.setcategoria(rs.getInt("idcategoria"));
+                listaArticulos.add(articulo);
+            }
+            return listaArticulos;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+    public List<String> listarIdCategorias() throws SQLException, ClassNotFoundException {
+        List<String> listaArticulos = new ArrayList();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(DataBD.urlMySQL, DataBD.user, DataBD.pass);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT idCategoria FROM articulo");
+
+            while (rs.next()) {
+                listaArticulos.add(rs.getInt("idCategoria"));
             }
             return listaArticulos;
         } catch (Exception e) {

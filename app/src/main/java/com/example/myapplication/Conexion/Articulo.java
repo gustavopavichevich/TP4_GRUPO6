@@ -7,13 +7,13 @@ public class Articulo {
     int Id;
     String nombre;
     int stock;
-    String categoria;
+    int categoria;
 
-    public String getcategoria() {
+    public int getcategoria() {
         return categoria;
     }
 
-    public void setcategoria(String categoria) {
+    public void setcategoria(int categoria) {
         this.categoria = categoria;
     }
 

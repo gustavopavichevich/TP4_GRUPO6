@@ -35,7 +35,7 @@ public class ArticuloAdapter extends ArrayAdapter<Articulo> {
         tvid.setText(getItem(position).getId()+"");
         tvnombre.setText(getItem(position).getNombre()+"");
         tvStock.setText(getItem(position).getStock());
-        tvCategoria.setAdapter(getItem(position).getcategoria());
+//        tvCategoria.setAdapter(getItem(position).getcategoria());
 
         return item;
     }
