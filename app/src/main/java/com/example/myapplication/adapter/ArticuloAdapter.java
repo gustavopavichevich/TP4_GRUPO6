@@ -27,8 +27,8 @@ public class ArticuloAdapter extends ArrayAdapter<Articulo> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View item = inflater.inflate(R.layout.list_template, null);
 
-        TextView nombreLT = (TextView) item.findViewById(R.id.et_nombre);
-        TextView stockLT = (TextView) item.findViewById(R.id.et_stock);
+        TextView nombreLT = (TextView) item.findViewById(R.id.nombreLT);
+        TextView stockLT = (TextView) item.findViewById(R.id.stockLT);
 
         nombreLT.setText(getItem(position).getNombre()+"");
         stockLT.setText(getItem(position).getStock());
