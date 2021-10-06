@@ -18,24 +18,23 @@ import java.util.List;
 public class ArticuloAdapter extends ArrayAdapter<Articulo> {
 
     public ArticuloAdapter(Context context, List<Articulo> objetos) {
-        super(context, R.layout.fragment_listado, objetos);
+        super(context, R.layout.list_template, objetos);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View item = inflater.inflate(R.layout.fragment_listado, null);
+        View item = inflater.inflate(R.layout.list_template, null);
 
-        TextView tvid = (TextView) item.findViewById(R.id.et_id);
-        TextView tvnombre = (TextView) item.findViewById(R.id.et_nombre);
-        TextView tvStock = (TextView) item.findViewById(R.id.et_stock);
-        Spinner tvCategoria = (Spinner) item.findViewById(R.id.s_categoria);
+        TextView nombreLT = (TextView) item.findViewById(R.id.et_nombre);
+        TextView stockLT = (TextView) item.findViewById(R.id.et_stock);
 
-        tvid.setText(getItem(position).getId()+"");
-        tvnombre.setText(getItem(position).getNombre()+"");
-        tvStock.setText(getItem(position).getStock());
-//        tvCategoria.setAdapter(getItem(position).getcategoria());
+        nombreLT.setText(getItem(position).getNombre()+"");
+        stockLT.setText(getItem(position).getStock());
+
+        nombreLT.setText(getItem(position).getNombre()+"");
+        stockLT.setText(getItem(position).getStock()+"");
 
         return item;
     }
