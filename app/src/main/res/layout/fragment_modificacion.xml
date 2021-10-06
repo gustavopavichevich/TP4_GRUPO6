@@ -7,10 +7,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <LinearLayout
         android:id="@+id/linLayModificar"
         android:layout_width="match_parent"
@@ -101,6 +97,10 @@
             android:backgroundTint="#937A7A"
             android:text="Modificar"
             android:textColorHint="#756464" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

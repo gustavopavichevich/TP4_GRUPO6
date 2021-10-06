@@ -7,9 +7,19 @@
     tools:context=".ListadoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
+
+    <TextView
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
         android:text="@string/texto_listado" />
+
+    <ListView
+        android:id="@+id/lvarticulo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>
