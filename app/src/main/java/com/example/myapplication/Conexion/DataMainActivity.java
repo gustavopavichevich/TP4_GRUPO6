@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.ListView;
 
 import com.example.myapplication.adapter.ArticuloAdapter;
+import com.example.myapplication.entidad.Articulos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +21,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     private Context context;
 
     private static String result2;
-    private static ArrayList<Articulo> listaArticulos = new ArrayList<>();
+    private static ArrayList<Articulos> listaArticulos = new ArrayList<>();
 
     //Recibe por constructor el textview
     //Constructor
@@ -40,9 +41,9 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             ResultSet rs = st.executeQuery("SELECT nombre, stock FROM articulo");
             result2 = " ";
 
-            Articulo articulo;
+            Articulos articulo;
             while (rs.next()) {
-                articulo = new Articulo();
+                articulo = new Articulos();
                 articulo.setId(rs.getInt("id"));
                 articulo.setNombre(rs.getString("nombre"));
                 articulo.setStock(rs.getInt("stock"));

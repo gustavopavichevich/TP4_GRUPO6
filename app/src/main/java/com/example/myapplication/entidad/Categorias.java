@@ -1,9 +1,11 @@
-package com.example.myapplication.Conexion;
+package com.example.myapplication.entidad;
 
-public class Categoria {
-    int id_categoria;
+public class Categorias {
 
-    public Categoria() {
+    private int id_categoria;
+    private String descripcion;
+
+    public Categorias() {
     }
 
     public String getDescripcion() {
@@ -13,8 +15,6 @@ public class Categoria {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    String descripcion;
 
     public int getId_categoria() {
         return id_categoria;

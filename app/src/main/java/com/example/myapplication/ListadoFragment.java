@@ -10,11 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.myapplication.Conexion.Articulo;
-import com.example.myapplication.Conexion.DataMainActivity;
-
-import java.util.List;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ListadoFragment#newInstance} factory method to

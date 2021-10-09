@@ -1,8 +1,6 @@
-package com.example.myapplication.Conexion;
+package com.example.myapplication.entidad;
 
-import android.widget.SpinnerAdapter;
-
-public class Articulo {
+public class Articulos {
 
     int Id;
     String nombre;
