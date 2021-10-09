@@ -2,25 +2,28 @@ package com.example.myapplication.entidad;
 
 public class Articulos {
 
-    int Id;
-    String nombre;
-    int stock;
-    int categoria;
+    private int id;
+    private String nombre;
+    private int stock;
+    private int categoria;
 
-    public int getcategoria() {
-        return categoria;
+    public Articulos(){
+
     }
 
-    public void setcategoria(int categoria) {
+    public Articulos(int id, String nombre, int stock, int categoria) {
+        this.id = id;
+        this.nombre = nombre;
+        this.stock = stock;
         this.categoria = categoria;
     }
 
-    public int getStock() {
-        return stock;
+    public int getId() {
+        return id;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -31,16 +34,19 @@ public class Articulos {
         this.nombre = nombre;
     }
 
-    public int getId() {
-        return Id;
+    public int getStock() {
+        return stock;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public void Articulo() {
-
+    public int getCategoria() {
+        return categoria;
     }
 
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
 }

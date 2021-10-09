@@ -12,8 +12,6 @@ import com.example.myapplication.R;
 
 import java.util.List;
 
-
-
 public class ArticuloAdapter extends ArrayAdapter<Articulos> {
 
     public ArticuloAdapter(Context context, List<Articulos> objetos) {
@@ -26,14 +24,11 @@ public class ArticuloAdapter extends ArrayAdapter<Articulos> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View item = inflater.inflate(R.layout.list_template, null);
 
-        TextView nombreLT = (TextView) item.findViewById(R.id.nombreLT);
-        TextView stockLT = (TextView) item.findViewById(R.id.stockLT);
+        TextView tvNombre = (TextView) item.findViewById(R.id.nombreLT);
+        TextView tvStock = (TextView) item.findViewById(R.id.stockLT);
 
-        nombreLT.setText(getItem(position).getNombre()+"");
-        stockLT.setText(getItem(position).getStock());
-
-        nombreLT.setText(getItem(position).getNombre()+"");
-        stockLT.setText(getItem(position).getStock()+"");
+        tvNombre.setText(getItem(position).getNombre()+"");
+        tvStock.setText(getItem(position).getStock());
 
         return item;
     }

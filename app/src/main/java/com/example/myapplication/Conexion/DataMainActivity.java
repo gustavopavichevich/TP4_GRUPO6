@@ -17,16 +17,16 @@ import java.util.ArrayList;
 public class DataMainActivity extends AsyncTask<String, Void, String> {
 
 
-    private ListView lvarticulo;
+    private ListView lvArticulo;
     private Context context;
 
     private static String result2;
-    private static ArrayList<Articulos> listaArticulos = new ArrayList<>();
+    private static ArrayList<Articulos> listaArticulos = new ArrayList<Articulos>();
 
     //Recibe por constructor el textview
     //Constructor
     public DataMainActivity(ListView lv, Context ct) {
-        lvarticulo = lv;
+        lvArticulo = lv;
         context = ct;
     }
 
@@ -38,7 +38,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataBD.urlMySQL, DataBD.user, DataBD.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT nombre, stock FROM articulo");
+            ResultSet rs = st.executeQuery("SELECT * FROM articulos");
             result2 = " ";
 
             Articulos articulo;
@@ -47,7 +47,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                 articulo.setId(rs.getInt("id"));
                 articulo.setNombre(rs.getString("nombre"));
                 articulo.setStock(rs.getInt("stock"));
-                articulo.setcategoria(rs.getInt("idCategoria"));
+                articulo.setCategoria(rs.getInt("categoria"));
                 listaArticulos.add(articulo);
             }
             response = "Conexion exitosa";
@@ -61,7 +61,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String response) {
         ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
-        lvarticulo.setAdapter(adapter);
+        lvArticulo.setAdapter(adapter);
     }
 }
 

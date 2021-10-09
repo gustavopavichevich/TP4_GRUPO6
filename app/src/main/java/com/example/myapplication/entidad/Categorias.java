@@ -2,10 +2,15 @@ package com.example.myapplication.entidad;
 
 public class Categorias {
 
-    private int id_categoria;
+    private int id;
     private String descripcion;
 
     public Categorias() {
+    }
+
+    public Categorias(int id, String descripcion) {
+        this.id = id;
+        this.descripcion = descripcion;
     }
 
     public String getDescripcion() {
@@ -16,11 +21,11 @@ public class Categorias {
         this.descripcion = descripcion;
     }
 
-    public int getId_categoria() {
-        return id_categoria;
+    public int getId() {
+        return id;
     }
 
-    public void setId_categoria(int id_categoria) {
-        this.id_categoria = id_categoria;
+    public void setId(int id) {
+        this.id = id;
     }
 }
