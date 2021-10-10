@@ -62,6 +62,8 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String response) {
         ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
         lvArticulo.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+//        ((ArticuloAdapter)lvArticulo.getAdapter()).notifyDataSetChanged();
     }
 }
 
