@@ -1,17 +1,17 @@
 package com.example.myapplication.entidad;
 
-public class Articulos {
+public class Articulo {
 
     private int id;
     private String nombre;
     private int stock;
     private int categoria;
 
-    public Articulos(){
+    public Articulo(){
 
     }
 
-    public Articulos(int id, String nombre, int stock, int categoria) {
+    public Articulo(int id, String nombre, int stock, int categoria) {
         this.id = id;
         this.nombre = nombre;
         this.stock = stock;
