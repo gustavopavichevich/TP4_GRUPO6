@@ -10,22 +10,25 @@ import com.example.myapplication.entidad.Articulos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLDataException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class DataMainActivity extends AsyncTask<String, Void, String> {
 
-
-    private ListView lvArticulo;
-    private Context context;
+    private final ListView lvArticulo;
+    private final Context context;
+    private String accion = null;
 
     private static String result2;
-    private static ArrayList<Articulos> listaArticulos = new ArrayList<Articulos>();
+    private final List<Articulos> listaArticulos = new ArrayList<Articulos>();
 
     //Recibe por constructor el textview
     //Constructor
-    public DataMainActivity(ListView lv, Context ct) {
+    public DataMainActivity(String accion, ListView lv, Context ct) {
+        this.accion = accion;
         lvArticulo = lv;
         context = ct;
     }
@@ -33,24 +36,33 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... urls) {
         String response = "";
-
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataBD.urlMySQL, DataBD.user, DataBD.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM articulos");
+            ResultSet rs;
             result2 = " ";
+            switch (accion) {
+                case "select":
+                    rs = st.executeQuery("SELECT * FROM articulo");
+                    Articulos articulo;
+                    while (rs.next()) {
+                        articulo = new Articulos();
+                        articulo.setId(rs.getInt("id"));
+                        articulo.setNombre(rs.getString("nombre"));
+                        articulo.setStock(rs.getInt("stock"));
+                        articulo.setCategoria(rs.getInt("idCategoria"));
+                        listaArticulos.add(articulo);
+                    }
+                    response = "Conexion exitosa";
+                    break;
 
-            Articulos articulo;
-            while (rs.next()) {
-                articulo = new Articulos();
-                articulo.setId(rs.getInt("id"));
-                articulo.setNombre(rs.getString("nombre"));
-                articulo.setStock(rs.getInt("stock"));
-                articulo.setCategoria(rs.getInt("categoria"));
-                listaArticulos.add(articulo);
+                default:
+                    break;
             }
-            response = "Conexion exitosa";
+        } catch (SQLDataException e) {
+            e.printStackTrace();
+            result2 = "Error al ejecutar sentencia SQL";
         } catch (Exception e) {
             e.printStackTrace();
             result2 = "Conexion no exitosa";
@@ -60,8 +72,14 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
-        lvArticulo.setAdapter(adapter);
+        switch (accion) {
+            case "select":
+                ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
+                lvArticulo.setAdapter(adapter);
+                break;
+            default:
+                break;
+        }
     }
 }
 
