@@ -27,24 +27,25 @@ import java.util.List;
 
 public class DataMainActivity extends AsyncTask<String, Void, String> {
 
-    private final ListView lvArticulo;
+    private  ListView lvArticulo;
     private final Context context;
     private String accion = null;
 
    // private final Articulo articulo = new Articulo();
-    private final Categoria categoria = new Categoria();
-    private Spinner spinner;
+    private Categoria categoria = new Categoria();
+    private Spinner s_categoria;
     private static String result2;
     private Articulo articulo;
-    private final List<Articulo> listaArticulos = new ArrayList<Articulo>();
-    private final List<Categoria> listaCategorias = new ArrayList<Categoria>();
+    private Categoria cat;
+    private List<Articulo> listaArticulos = new ArrayList<Articulo>();
+    private List<Categoria> listaCategorias = new ArrayList<Categoria>();
 
 
     //Recibe por constructor el textview
     //Constructor
     public DataMainActivity(String accion, Spinner sp , Context ct) {
         this.accion = accion;
-        spinner = sp;
+        s_categoria = sp;
         context = ct;
     }
 
@@ -144,7 +145,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
 
                 case "selectTodasCategorías":
                     CategoriaAdapter adapterCate = new CategoriaAdapter(context, listaCategorias);
-                    spinner.setAdapter(adapterCate);
+                    s_categoria.setAdapter(adapterCate);
                     //lvArticulo.setAdapter(adapter);
 
                     //Se lo envio al activity
