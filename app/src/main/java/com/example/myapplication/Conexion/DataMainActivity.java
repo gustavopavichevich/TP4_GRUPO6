@@ -3,6 +3,7 @@ package com.example.myapplication.Conexion;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.myapplication.ListadoFragment;
@@ -24,8 +25,8 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     private ListView lvArticulo = null;
     private Context context = null;
     private String accion = null;
-    private final Articulo articulo = new Articulo();
-    private final Categoria categoria = new Categoria();
+    private Articulo articulo = new Articulo();
+    private Categoria categoria = new Categoria();
 
     private static String result2;
     private final List<Articulo> listaArticulos = new ArrayList<Articulo>();
@@ -62,7 +63,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             Articulo art;
             Categoria cat;
             switch (accion) {
-                case "select":
+                case "selectArticulos":
                     rs = st.executeQuery("SELECT * FROM articulo");
                     while (rs.next()) {
                         art = new Articulo();
@@ -74,8 +75,8 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                     }
                     response = "Conexion exitosa";
                     break;
-                case "selectIDart":
-                    rs = st.executeQuery("SELECT * FROM art where id = " + articulo.getId());
+                case "selectIdArt":
+                    rs = st.executeQuery("SELECT * FROM articulo where id = " + articulo.getId());
                     while (rs.next()) {
                         art = new Articulo();
                         art.setId(rs.getInt("id"));
@@ -86,7 +87,16 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                     response = "Conexion exitosa";
                     break;
                 case "selectIdCategoría":
-                    rs = st.executeQuery("SELECT * FROM categorias where id = " + categoria.getId());
+                    rs = st.executeQuery("SELECT * FROM categoria where id = " + categoria.getId());
+                    while (rs.next()) {
+                        cat = new Categoria();
+                        cat.setId(rs.getInt("id"));
+                        cat.setDescripcion(rs.getString("descripcion"));
+                    }
+                    response = "Conexion exitosa";
+                    break;
+                case "selectCategorías":
+                    rs = st.executeQuery("SELECT * FROM categoria where id = " + categoria.getId());
                     while (rs.next()) {
                         cat = new Categoria();
                         cat.setId(rs.getInt("id"));
@@ -111,7 +121,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String response) {
         try {
             switch (accion) {
-                case "select":
+                case "selectArticulos":
                     ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
                     //lvArticulo.setAdapter(adapter);
 
