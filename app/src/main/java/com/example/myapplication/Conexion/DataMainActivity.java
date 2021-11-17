@@ -85,6 +85,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                     Bundle bundle= new Bundle();
                     bundle.putSerializable("ListadoArticulos", adapter);
                     flistado.setArguments(bundle);
+                    flistado.onStart();
 
 
                     break;
