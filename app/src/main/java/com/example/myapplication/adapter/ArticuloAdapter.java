@@ -10,9 +10,10 @@ import android.widget.TextView;
 import com.example.myapplication.entidad.Articulos;
 import com.example.myapplication.R;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ArticuloAdapter extends ArrayAdapter<Articulos> {
+public class ArticuloAdapter extends ArrayAdapter<Articulos> implements Serializable {
 
     private Context context;
 

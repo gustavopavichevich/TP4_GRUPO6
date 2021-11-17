@@ -2,13 +2,14 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
+
+import com.example.myapplication.adapter.ArticuloAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,6 +50,12 @@ public class ListadoFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
+        }
+
+        Bundle objRecibido= getArguments();
+        ArticuloAdapter adapter=null;
+        if (objRecibido!=null){
+            adapter= (ArticuloAdapter) objRecibido.getSerializable("ListadoArticulos");
         }
     }
 
