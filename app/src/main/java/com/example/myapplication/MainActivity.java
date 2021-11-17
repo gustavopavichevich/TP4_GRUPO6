@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void Connect() {
-        DataMainActivity task = new DataMainActivity(lvArticulos, this);
+        DataMainActivity task = new DataMainActivity("select", lvArticulos, this);
         task.execute();
     }
 }

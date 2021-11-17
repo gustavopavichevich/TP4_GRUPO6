@@ -14,14 +14,16 @@ import java.util.List;
 
 public class ArticuloAdapter extends ArrayAdapter<Articulos> {
 
-    public ArticuloAdapter(Context context, List<Articulos> objetos) {
-        super(context, R.layout.list_template, objetos);
-    }
+    private Context context;
 
+    public ArticuloAdapter(Context context, List<Articulos> articulos) {
+        super(context, R.layout.list_template, articulos);
+        this.context = context;
+    }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater inflater = LayoutInflater.from(getContext());
+        LayoutInflater inflater = LayoutInflater.from(context);
         View item = inflater.inflate(R.layout.list_template, null);
 
         TextView tvNombre = (TextView) item.findViewById(R.id.nombreLT);
