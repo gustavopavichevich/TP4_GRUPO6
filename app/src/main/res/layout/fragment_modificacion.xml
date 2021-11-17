@@ -12,36 +12,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="20dp"
         android:visibility="visible"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
-            android:id="@+id/linLayBuscarModificar"
+            android:id="@+id/linLayBuscarModificar1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:padding="20dp"
+            android:orientation="horizontal"
+            android:background="@color/teal_700"
             android:visibility="visible"
             tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="ID"
                 android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/et_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@color/white"
                 android:ems="10"
                 android:inputType="textPersonName"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linLayBuscarModificar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+
+            android:background="@color/teal_700"
+            android:visibility="visible"
+            android:gravity="top|right"
+            tools:ignore="MissingConstraints">
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginRight="25dp"
                 android:backgroundTint="#937A7A"
                 android:text="Buscar"
                 android:textColorHint="#756464" />
@@ -51,6 +69,8 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:textStyle="bold"
             android:text="NOMBRE DE PRODUCTO"
             android:textSize="20sp" />
 
@@ -66,6 +86,8 @@
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:text="STOCK"
             android:textSize="20sp" />
 
@@ -81,6 +103,8 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:text="CATEGORIA"
             android:textSize="20sp" />
 
@@ -89,19 +113,26 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        <Button
-            android:id="@+id/button6"
+        <LinearLayout
+            android:id="@+id/linLayModificar1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#937A7A"
-            android:text="Modificar"
-            android:textColorHint="#756464" />
+            android:padding="10dp"
+            android:gravity="bottom|center"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#937A7A"
+                android:text="Modificar"
+                android:textColorHint="#756464" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    </FrameLayout>
+</FrameLayout>

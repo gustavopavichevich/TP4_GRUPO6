@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.example.myapplication.ui.main.SectionsPagerAdapter;
 import com.example.myapplication.databinding.ActivityMainBinding;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private ListView lvArticulos;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
         lvArticulos = (ListView) this.findViewById(R.id.lvarticulo);
+        spinner = (Spinner) this.findViewById(R.id.s_categoria);
 
     }
     public void Connect() {
         DataMainActivity task = new DataMainActivity("select", lvArticulos, this);
+        DataMainActivity task2 = new DataMainActivity("selectTodasCategorías", spinner, this);
+        task2.execute();
         task.execute();
     }
 }
