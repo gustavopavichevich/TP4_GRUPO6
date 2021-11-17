@@ -29,7 +29,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     private Categoria categoria = new Categoria();
 
     private static String result2;
-    private final List<Articulo> listaArticulos = new ArrayList<Articulo>();
+    private static ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
 
     //Recibe por constructor el textview
     //Constructor
@@ -123,13 +123,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             switch (accion) {
                 case "selectArticulos":
                     ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
-                    //lvArticulo.setAdapter(adapter);
-
-                    //Se lo envio al activity
-                    ListadoFragment flistado = new ListadoFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("ListadoArticulos", adapter);
-                    flistado.setArguments(bundle);
+                    lvArticulo.setAdapter(adapter);
                     break;
                 default:
                     break;
