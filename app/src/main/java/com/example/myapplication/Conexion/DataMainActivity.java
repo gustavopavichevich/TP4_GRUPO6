@@ -13,7 +13,7 @@ import com.example.myapplication.adapter.ArticuloAdapter;
 import com.example.myapplication.adapter.CategoriaAdapter;
 import com.example.myapplication.entidad.Articulo;
 import com.example.myapplication.entidad.Categoria;
-import com.example.myapplication.entidad.Articulos;
+
 
 
 import java.sql.Connection;
@@ -31,10 +31,11 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     private final Context context;
     private String accion = null;
 
-    private final Articulo articulo = new Articulo();
+   // private final Articulo articulo = new Articulo();
     private final Categoria categoria = new Categoria();
     private Spinner spinner;
     private static String result2;
+    private Articulo articulo;
     private final List<Articulo> listaArticulos = new ArrayList<Articulo>();
     private final List<Categoria> listaCategorias = new ArrayList<Categoria>();
 
@@ -65,26 +66,26 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             switch (accion) {
                 case "select":
                     rs = st.executeQuery("SELECT * FROM articulo");
-                    Articulos articulo;
+
                     while (rs.next()) {
 
-                        art = new Articulo();
-                        art.setId(rs.getInt("id"));
-                        art.setNombre(rs.getString("nombre"));
-                        art.setStock(rs.getInt("stock"));
-                        art.setCategoria(rs.getInt("idCategoria"));
-                        listaArticulos.add(art);
+                        articulo = new Articulo();
+                        articulo.setId(rs.getInt("id"));
+                        articulo.setNombre(rs.getString("nombre"));
+                        articulo.setStock(rs.getInt("stock"));
+                        articulo.setCategoria(rs.getInt("idCategoria"));
+                        listaArticulos.add(articulo);
                     }
                     response = "Conexion exitosa";
                     break;
                 case "selectIDart":
                     rs = st.executeQuery("SELECT * FROM articulo where id = " + articulo.getId());
                     while (rs.next()) {
-                        art = new Articulo();
-                        art.setId(rs.getInt("id"));
-                        art.setNombre(rs.getString("nombre"));
-                        art.setStock(rs.getInt("stock"));
-                        art.setCategoria(rs.getInt("idCategoria"));
+                        articulo = new Articulo();
+                        articulo.setId(rs.getInt("id"));
+                        articulo.setNombre(rs.getString("nombre"));
+                        articulo.setStock(rs.getInt("stock"));
+                        articulo.setCategoria(rs.getInt("idCategoria"));
                     }
                     response = "Conexion exitosa";
                     break;
