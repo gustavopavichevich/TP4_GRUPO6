@@ -52,10 +52,13 @@ public class ListadoFragment extends Fragment {
 
         }
 
-        Bundle objRecibido= getArguments();
-        ArticuloAdapter adapter=null;
-        if (objRecibido!=null){
-            adapter= (ArticuloAdapter) objRecibido.getSerializable("ListadoArticulos");
+        if (getArguments().getBundle("ListadoArticulos") != null) {
+
+            Bundle objRecibido = getArguments().getBundle("ListadoArticulos");
+            ArticuloAdapter adapter = null;
+            if (objRecibido != null) {
+                adapter = (ArticuloAdapter) objRecibido.getSerializable("ListadoArticulos");
+            }
         }
     }
 
