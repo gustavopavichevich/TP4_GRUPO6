@@ -7,14 +7,10 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.myapplication.AltaFragment;
-import com.example.myapplication.ListadoFragment;
 import com.example.myapplication.adapter.ArticuloAdapter;
-
 import com.example.myapplication.adapter.CategoriaAdapter;
 import com.example.myapplication.entidad.Articulo;
 import com.example.myapplication.entidad.Categoria;
-import com.example.myapplication.entidad.Articulos;
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,16 +23,16 @@ import java.util.List;
 
 public class DataMainActivity extends AsyncTask<String, Void, String> {
 
-    private final ListView lvArticulo;
-    private final Context context;
+    private ListView lvArticulo;
+    private Context context;
     private String accion = null;
 
-    private final Articulo articulo = new Articulo();
-    private final Categoria categoria = new Categoria();
+    private Articulo articulo = new Articulo();
+    private Categoria categoria = new Categoria();
     private Spinner spinner;
     private static String result2;
-    private final List<Articulo> listaArticulos = new ArrayList<Articulo>();
-    private final List<Categoria> listaCategorias = new ArrayList<Categoria>();
+    private List<Articulo> listaArticulos = new ArrayList<Articulo>();
+    private List<Categoria> listaCategorias = new ArrayList<Categoria>();
 
 
     //Recibe por constructor el textview
@@ -55,6 +51,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... urls) {
+        listaArticulos.clear();
         String response = "";
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -65,48 +62,48 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             switch (accion) {
                 case "select":
                     rs = st.executeQuery("SELECT * FROM articulo");
-                    Articulos articulo;
+                    Articulo articulo;
                     while (rs.next()) {
 
-                        art = new Articulo();
-                        art.setId(rs.getInt("id"));
-                        art.setNombre(rs.getString("nombre"));
-                        art.setStock(rs.getInt("stock"));
-                        art.setCategoria(rs.getInt("idCategoria"));
-                        listaArticulos.add(art);
+                        articulo = new Articulo();
+                        articulo.setId(rs.getInt("id"));
+                        articulo.setNombre(rs.getString("nombre"));
+                        articulo.setStock(rs.getInt("stock"));
+                        articulo.setCategoria(rs.getInt("idCategoria"));
+                        listaArticulos.add(articulo);
                     }
                     response = "Conexion exitosa";
                     break;
-                case "selectIDart":
-                    rs = st.executeQuery("SELECT * FROM articulo where id = " + articulo.getId());
-                    while (rs.next()) {
-                        art = new Articulo();
-                        art.setId(rs.getInt("id"));
-                        art.setNombre(rs.getString("nombre"));
-                        art.setStock(rs.getInt("stock"));
-                        art.setCategoria(rs.getInt("idCategoria"));
-                    }
-                    response = "Conexion exitosa";
-                    break;
-                case "selectIdCategoría":
-                    rs = st.executeQuery("SELECT * FROM categoria where id = " + categoria.getId());
-                    while (rs.next()) {
-                        cat = new Categoria();
-                        cat.setId(rs.getInt("id"));
-                        cat.setDescripcion(rs.getString("descripcion"));
-                    }
-                    response = "Conexion exitosa";
-                    break;
-                case "selectTodasCategorías":
-                    rs = st.executeQuery("SELECT * FROM categoria");
-                    while (rs.next()) {
-                        cat = new Categoria();
-                        cat.setId(rs.getInt("id"));
-                        cat.setDescripcion(rs.getString("descripcion"));
-
-                    }
-                    response = "Conexion exitosa";
-                    break;
+//                case "selectIDart":
+//                    rs = st.executeQuery("SELECT * FROM articulo where id = " + articulo.getId());
+//                    while (rs.next()) {
+//                        articulo = new Articulo();
+//                        articulo.setId(rs.getInt("id"));
+//                        articulo.setNombre(rs.getString("nombre"));
+//                        articulo.setStock(rs.getInt("stock"));
+//                        articulo.setCategoria(rs.getInt("idCategoria"));
+//                    }
+//                    response = "Conexion exitosa";
+//                    break;
+//                case "selectIdCategoría":
+//                    rs = st.executeQuery("SELECT * FROM categoria where id = " + categoria.getId());
+//                    while (rs.next()) {
+//                        categoria = new Categoria();
+//                        categoria.setId(rs.getInt("id"));
+//                        categoria.setDescripcion(rs.getString("descripcion"));
+//                    }
+//                    response = "Conexion exitosa";
+//                    break;
+//                case "selectTodasCategorías":
+//                    rs = st.executeQuery("SELECT * FROM categoria");
+//                    while (rs.next()) {
+//                        categoria = new Categoria();
+//                        categoria.setId(rs.getInt("id"));
+//                        categoria.setDescripcion(rs.getString("descripcion"));
+//
+//                    }
+//                    response = "Conexion exitosa";
+//                    break;
 
                 default:
                     break;
@@ -127,17 +124,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             switch (accion) {
                 case "select":
                     ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
-
-                    //lvArticulo.setAdapter(adapter);
-
-
-                    ListadoFragment flistado = new ListadoFragment();
-                    Bundle bundle = new Bundle();
-
-                    bundle.putSerializable("ListadoArticulos", adapter);
-                    flistado.setArguments(bundle);
-                    flistado.onStart();
-
+                    lvArticulo.setAdapter(adapter);
 
                     break;
 
