@@ -12,18 +12,21 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
-        android:id="@+id/linLayModificar"
-        android:layout_width="397dp"
-        android:layout_height="342dp"
+        android:id="@+id/linLayModificar3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:text="ID"
-            android:textSize="20sp" />
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/et_id"
@@ -38,7 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="NOMBRE DE PRODUCTO"
-            android:textSize="20sp" />
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/et_nombre"
@@ -53,6 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="STOCK"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:textSize="20sp" />
 
         <EditText
@@ -68,22 +75,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CATEGORIA"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/s_categoria"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        <Button
-            android:id="@+id/button6"
+        <LinearLayout
+            android:id="@+id/linLayModificar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#937A7A"
-            android:text="Agregar"
-            android:textColorHint="#756464" />
+            android:gravity="bottom|center"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#937A7A"
+                android:text="Agregar"
+                android:textColorHint="#756464" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
 </FrameLayout>
