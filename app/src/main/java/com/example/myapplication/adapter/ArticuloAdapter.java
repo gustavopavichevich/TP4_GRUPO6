@@ -7,17 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.myapplication.entidad.Articulos;
+import com.example.myapplication.entidad.Articulo;
 import com.example.myapplication.R;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class ArticuloAdapter extends ArrayAdapter<Articulos> implements Serializable {
+public class ArticuloAdapter extends ArrayAdapter<Articulo> implements Serializable {
 
     private Context context;
 
-    public ArticuloAdapter(Context context, List<Articulos> articulos) {
+    public ArticuloAdapter(Context context, List<Articulo> articulos) {
         super(context, R.layout.list_template, articulos);
         this.context = context;
     }
