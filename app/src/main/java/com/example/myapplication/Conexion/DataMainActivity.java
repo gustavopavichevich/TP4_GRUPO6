@@ -2,8 +2,10 @@ package com.example.myapplication.Conexion;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.widget.ListView;
 
+import com.example.myapplication.ListadoFragment;
 import com.example.myapplication.adapter.ArticuloAdapter;
 import com.example.myapplication.entidad.Articulos;
 
@@ -23,7 +25,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     private String accion = null;
 
     private static String result2;
-    private final List<Articulos> listaArticulos = new ArrayList<Articulos>();
+    private List<Articulos> listaArticulos = new ArrayList<Articulos>();
 
     //Recibe por constructor el textview
     //Constructor
@@ -72,13 +74,27 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        switch (accion) {
-            case "select":
-                ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
-                lvArticulo.setAdapter(adapter);
-                break;
-            default:
-                break;
+        try {
+            switch (accion) {
+                case "select":
+                    ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
+                    //lvArticulo.setAdapter(adapter);
+
+                    //Se lo envio al activity
+                    ListadoFragment flistado= new ListadoFragment();
+                    Bundle bundle= new Bundle();
+                    bundle.putSerializable("ListadoArticulos", adapter);
+                    flistado.setArguments(bundle);
+
+
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+
         }
     }
 }
