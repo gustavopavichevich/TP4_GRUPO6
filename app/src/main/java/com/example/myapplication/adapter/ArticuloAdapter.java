@@ -37,4 +37,5 @@ public class ArticuloAdapter extends ArrayAdapter<Articulo>{
         tvIdCategoria.setText("Categoría: "+ getItem(position).getIdCategoria()+"");
         return item;
     }
+
 }

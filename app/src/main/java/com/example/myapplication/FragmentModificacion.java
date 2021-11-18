@@ -104,4 +104,16 @@ public class FragmentModificacion extends Fragment {
         DataMainActivity carga = new DataMainActivity("selectCategorias", spinnerCat, getActivity());
         carga.execute();
     }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        // Refresh tab data:
+        if (getFragmentManager() != null) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .detach(this)
+                    .attach(this)
+                    .commit();
+        }
+    }
 }

@@ -153,6 +153,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             switch (accion) {
                 case "selectArticulos":
                     ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
+                    adapter.notifyDataSetChanged();
                     lvArticulo.setAdapter(adapter);
                     break;
                 case "selectCategorias":

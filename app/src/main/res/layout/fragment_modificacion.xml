@@ -52,6 +52,7 @@
                     android:layout_marginLeft="30dp"
                     android:labelFor="@id/tvIdArticulo"
                     android:background="@color/white"
+                    android:textColor="@color/black"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

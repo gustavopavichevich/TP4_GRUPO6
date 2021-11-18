@@ -86,4 +86,16 @@ public class FragmentAlta extends Fragment {
         DataMainActivity traeMax = new DataMainActivity("traeMax", txtId, getActivity());
         traeMax.execute();
     }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        // Refresh tab data:
+        if (getFragmentManager() != null) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .detach(this)
+                    .attach(this)
+                    .commit();
+        }
+    }
 }
