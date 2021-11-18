@@ -15,7 +15,7 @@ import com.example.myapplication.Conexion.DataMainActivity;
 public class ListadoFragment extends Fragment {
     private View view;
     private ListView lvArticulos;
-
+    public static final String titulo = "Listado";
     public static ListadoFragment newInstance() {return new ListadoFragment();}
 
     @Override

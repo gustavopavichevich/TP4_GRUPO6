@@ -74,17 +74,6 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                     }
                     response = "Conexion exitosa";
                     break;
-                case "selectIDart":
-                    rs = st.executeQuery("SELECT * FROM articulo where id = " + this.articulo.getId());
-                    while (rs.next()) {
-                        this.articulo.setId(rs.getInt("id"));
-                        this.articulo.setNombre(rs.getString("nombre"));
-                        this.articulo.setStock(rs.getInt("stock"));
-                        this.articulo.setIdCategoria(rs.getInt("idCategoria"));
-                    }
-                    response = "Conexion exitosa";
-
-                    break;
                 case "insertArticulo":
                     st.executeUpdate("INSERT INTO articulo(id,nombre,stock,idCategoria) VALUES(" +
                             this.articulo.getId() + ",'" + this.articulo.getNombre() + "'," + this.articulo.getStock() + "," + this.articulo.getIdCategoria() + ")");
@@ -138,10 +127,6 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                 case "selectArticulos":
                     ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
                     lvArticulo.setAdapter(adapter);
-
-                    break;
-                case "selectIDart":
-
                     break;
                 case "selectCategorias":
                     ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, listaCategorias);

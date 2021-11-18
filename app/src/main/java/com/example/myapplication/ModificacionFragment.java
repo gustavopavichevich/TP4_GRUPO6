@@ -18,6 +18,7 @@ import com.example.myapplication.Conexion.DataMainActivity;
 import com.example.myapplication.entidad.Articulo;
 
 public class ModificacionFragment extends Fragment {
+    public static final String titulo = "Modificación";
 
     private View view;
     private EditText txtID;
@@ -36,7 +37,6 @@ public class ModificacionFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_modificacion, container, false);
-
         txtID = view.findViewById(R.id.txtID);
         txtNombre = view.findViewById(R.id.txtNombre);
         txtStock = view.findViewById(R.id.txtStock);

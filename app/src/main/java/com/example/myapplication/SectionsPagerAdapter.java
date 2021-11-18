@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.main;
+package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,13 +37,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Alta";
+                return AltaFragment.titulo;
 
             case 1:
-                return "Modificación";
+                return ModificacionFragment.titulo;
 
             case 2:
-                return "Listado";
+                return ListadoFragment.titulo;
         }
         return super.getPageTitle(position);
     }

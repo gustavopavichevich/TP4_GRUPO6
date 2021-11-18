@@ -20,6 +20,7 @@ public class AltaFragment extends Fragment {
     private EditText txtId, txtNombre, txtStock, txtIdCategoria;
     private Spinner spinnerCat;
     private View view;
+    public static final String titulo = "Alta";
 
     public static AltaFragment newInstance() {
         return new AltaFragment();
