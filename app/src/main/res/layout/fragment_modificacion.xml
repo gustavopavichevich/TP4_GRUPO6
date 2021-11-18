@@ -113,7 +113,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck"
+                android:digits="0123456789"/>
 
             <TextView
                 android:id="@+id/textView8"

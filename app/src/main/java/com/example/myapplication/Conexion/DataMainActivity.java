@@ -3,8 +3,10 @@ package com.example.myapplication.Conexion;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.myapplication.adapter.ArticuloAdapter;
 import com.example.myapplication.entidad.Articulo;
@@ -23,8 +25,9 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     private ListView lvArticulo;
     private Context context;
     private String accion = null;
-
+    private EditText txtId;
     private Articulo articulo;
+    private int maximo;
     private Categoria categoria;
     private Spinner spinnerCat;
     private static String result2;
@@ -47,6 +50,12 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     public DataMainActivity(String accion, Spinner spinnerCat, Context ct) {
         this.accion = accion;
         this.spinnerCat = spinnerCat;
+        this.context = ct;
+    }
+
+    public DataMainActivity(String accion, EditText txtId, Context ct) {
+        this.accion = accion;
+        this.txtId = txtId;
         this.context = ct;
     }
 
@@ -73,10 +82,22 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                         listaArticulos.add(articulo);
                     }
                     response = "Conexion exitosa";
+
+
                     break;
+
+                case "traeMax":
+                    rs = st.executeQuery("SELECT max(id) +1 as 'maxi' FROM articulo");
+                    while (rs.next()) {
+                        maximo = rs.getInt("maxi");
+                    }
+                    response = "Conexion exitosa";
+                    break;
+
                 case "insertArticulo":
-                    st.executeUpdate("INSERT INTO articulo(id,nombre,stock,idCategoria) VALUES(" +
-                            this.articulo.getId() + ",'" + this.articulo.getNombre() + "'," + this.articulo.getStock() + "," + this.articulo.getIdCategoria() + ")");
+                    st.executeUpdate("INSERT INTO articulo(nombre,stock,idCategoria) VALUES('" +
+                            this.articulo.getNombre() + "'," + this.articulo.getStock() + "," + this.articulo.getIdCategoria() + ")");
+                    response = "Articulo insertado";
                     break;
                 case "selectIdCategoria":
                     rs = st.executeQuery("SELECT * FROM categoria where id = " + categoria.getId());
@@ -98,13 +119,19 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                     }
                     response = "Conexion exitosa";
                     break;
-                case "uptadteArticulo":
+                case "updateArticulo":
+                    String prueba = "UPDATE articulo SET " +
+                            "nombre = '" + this.articulo.getNombre() + "', " +
+                            "stock = " + this.articulo.getStock() + ", " +
+                            "idCategoria = " + this.articulo.getIdCategoria() +
+                            " WHERE id = " + this.articulo.getId();
+
                     st.executeUpdate("UPDATE articulo SET " +
                             "nombre = '" + this.articulo.getNombre() + "', " +
                             "stock = " + this.articulo.getStock() + ", " +
-                            "idCategoria = " + this.articulo.getIdCategoria() + ", " +
-                            "WHERE id = " + this.articulo.getId());
-                    response = "Conexion exitosa";
+                            "idCategoria = " + this.articulo.getIdCategoria() +
+                            " WHERE id = " + this.articulo.getId());
+                    response = "Articulo modificado";
                     break;
 
                 default:
@@ -131,6 +158,10 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                 case "selectCategorias":
                     ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, listaCategorias);
                     spinnerCat.setAdapter(adapter2);
+                    break;
+                case "traeMax":
+
+                  txtId.setText(String.valueOf(maximo), TextView.BufferType.EDITABLE);
                     break;
                 default:
                     break;

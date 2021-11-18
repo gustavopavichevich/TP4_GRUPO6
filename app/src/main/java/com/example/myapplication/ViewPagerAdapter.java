@@ -16,11 +16,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 1:
+            case 0:
                 return FragmentAlta.newInstance();
-            case 2:
+            case 1:
                 return FragmentModificacion.newInstance();
-            case 3:
+            case 2:
                 return FragmentListado.newInstance();
         }
         return null;

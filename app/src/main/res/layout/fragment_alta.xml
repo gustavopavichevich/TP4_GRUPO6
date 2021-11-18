@@ -41,13 +41,15 @@
                 android:id="@+id/txtID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="0123456789"
                 android:ems="10"
-                android:labelFor="@id/tvIdArticulo"
+                android:enabled="false"
                 android:inputType="textPersonName"
+                android:layout_marginTop="5dp"
+                android:labelFor="@id/tvIdArticulo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="SpeakableTextPresentCheck"
-                android:digits="0123456789" />
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -62,6 +64,7 @@
                 android:id="@+id/txtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -80,6 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:layout_marginTop="5dp"
                 android:inputType="textPersonName"
                 tools:ignore="SpeakableTextPresentCheck"
                 android:digits="0123456789" />
@@ -96,8 +100,10 @@
 
             <Spinner
                 android:id="@+id/spinnerCategoria"
+                style="@android:style/Widget.Material.Spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
                 android:text="Categoria"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -106,6 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="bottom|center"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 tools:ignore="MissingConstraints">
 
