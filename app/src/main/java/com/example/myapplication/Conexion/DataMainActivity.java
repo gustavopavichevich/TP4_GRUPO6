@@ -2,13 +2,11 @@ package com.example.myapplication.Conexion;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.example.myapplication.AltaFragment;
 import com.example.myapplication.adapter.ArticuloAdapter;
-import com.example.myapplication.adapter.CategoriaAdapter;
 import com.example.myapplication.entidad.Articulo;
 import com.example.myapplication.entidad.Categoria;
 
@@ -18,7 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLDataException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class DataMainActivity extends AsyncTask<String, Void, String> {
@@ -27,13 +24,12 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     private Context context;
     private String accion = null;
 
-    private Articulo articulo = new Articulo();
-    private Categoria categoria = new Categoria();
-    private Spinner spinner;
+    private Articulo articulo;
+    private Categoria categoria;
+    private Spinner spinnerCat;
     private static String result2;
-    private List<Articulo> listaArticulos = new ArrayList<Articulo>();
-    private List<Categoria> listaCategorias = new ArrayList<Categoria>();
-
+    private static ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
+    private static ArrayList<String> listaCategorias = new ArrayList<String>();
 
     //Recibe por constructor el textview
     //Constructor
@@ -46,6 +42,11 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
         this.accion = accion;
         lvArticulo = lv;
         context = ct;
+    }
+    public DataMainActivity(String accion, Spinner spinnerCat, Context ct) {
+        this.accion = accion;
+        this.spinnerCat = spinnerCat;
+        this.context = ct;
     }
 
     @Override
@@ -83,25 +84,31 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                     response = "Conexion exitosa";
 
                     break;
-//                case "selectIdCategoría":
-//                    rs = st.executeQuery("SELECT * FROM categoria where id = " + categoria.getId());
-//                    while (rs.next()) {
-//                        categoria = new Categoria();
-//                        categoria.setId(rs.getInt("id"));
-//                        categoria.setDescripcion(rs.getString("descripcion"));
-//                    }
-//                    response = "Conexion exitosa";
-//                    break;
-//                case "selectTodasCategorías":
-//                    rs = st.executeQuery("SELECT * FROM categoria");
-//                    while (rs.next()) {
-//                        categoria = new Categoria();
-//                        categoria.setId(rs.getInt("id"));
-//                        categoria.setDescripcion(rs.getString("descripcion"));
-//
-//                    }
-//                    response = "Conexion exitosa";
-//                    break;
+                case "insertArticulo":
+                    st.executeUpdate("INSERT INTO articulo(id,nombre,stock,idCategoria) VALUES(" +
+                            this.articulo.getId() + ",'" + this.articulo.getNombre() + "'," + this.articulo.getStock() + "," + this.articulo.getIdCategoria() + ")");
+                    break;
+                case "selectIdCategoria":
+                    rs = st.executeQuery("SELECT * FROM categoria where id = " + categoria.getId());
+                    while (rs.next()) {
+                        categoria = new Categoria();
+                        categoria.setId(rs.getInt("id"));
+                        categoria.setDescripcion(rs.getString("descripcion"));
+                    }
+                    response = "Conexion exitosa";
+                    break;
+                case "selectCategorias":
+                    listaCategorias.clear();
+                    rs = st.executeQuery("SELECT * FROM categoria");
+                    while (rs.next()) {
+                        categoria = new Categoria();
+                        categoria.setId(rs.getInt("id"));
+                        categoria.setDescripcion(rs.getString("descripcion"));
+                        listaCategorias.add(categoria.getDescripcion());
+
+                    }
+                    response = "Conexion exitosa";
+                    break;
 
                 default:
                     break;
@@ -120,37 +127,22 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String response) {
         try {
             switch (accion) {
-                case "select":
+                case "selectArticulos":
                     ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
                     lvArticulo.setAdapter(adapter);
 
                     break;
                 case "selectIDart":
-                    ArticuloAdapter adapter = new ArticuloAdapter(context, articulo);
-                    articulo.setAdapter(adapter);
+
                     break;
-
-                case "selectTodasCategorías":
-                    CategoriaAdapter adapterCate = new CategoriaAdapter(context, listaCategorias);
-                    spinner.setAdapter(adapterCate);
-                    //lvArticulo.setAdapter(adapter);
-
-                    //Se lo envio al activity
-                  AltaFragment falta = new AltaFragment();
-                    Bundle bundle2 = new Bundle();
-                    bundle2.putSerializable("ListadoCategorias", adapterCate);
-                    falta.setArguments(bundle2);
-
-                    /*ListadoFragment flistado = new ListadoFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("ListadoArticulos", adapter);
-                    flistado.setArguments(bundle);*/
+                case "selectCategorias":
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, listaCategorias);
+                    spinnerCat.setAdapter(adapter2);
                     break;
                 default:
                     break;
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
         }

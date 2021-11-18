@@ -57,13 +57,12 @@ public class AltaFragment extends Fragment {
                         return;
                     }
 
-                    Articulo a = new Articulo(id,txtNombre.getText().toString(),
-                            Integer.parseInt(txtStock.getText().toString()), spinnerCat.getSelectedItemPosition() +1);
+                    Articulo _art = new Articulo(id,txtNombre.getText().toString(),
+                            Integer.parseInt(txtStock.getText().toString()), spinnerCat.getSelectedItemPosition() +1,null);
 
-                    AltaArticulo alta = new AltaArticulo();
-                    alta.setArticulo(a);
+                    DataMainActivity InsertArticulo = new DataMainActivity("insertArticulo",_art);
+                    String resultado = InsertArticulo.execute().get();
 
-                    String resultado = alta.execute().get();
                     Toast.makeText(getActivity(), resultado, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -76,7 +75,7 @@ public class AltaFragment extends Fragment {
     }
 
     public void cargarSpinner() {
-        CargarSpinner carga = new CargarSpinner(spinnerCat, getActivity());
+        DataMainActivity carga = new DataMainActivity("selectCategorias",spinnerCat,getActivity());
         carga.execute();
     }
 }
