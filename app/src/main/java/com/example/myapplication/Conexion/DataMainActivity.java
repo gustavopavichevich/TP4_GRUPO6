@@ -60,7 +60,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             ResultSet rs;
             result2 = " ";
             switch (accion) {
-                case "select":
+                case "selectArticulos":
                     rs = st.executeQuery("SELECT * FROM articulo");
                     Articulo articulo;
                     while (rs.next()) {

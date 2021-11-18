@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void cargarViewPager(){
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter( getSupportFragmentManager());
         viewPager.setAdapter(sectionsPagerAdapter);
 
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);

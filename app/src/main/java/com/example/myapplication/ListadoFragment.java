@@ -8,6 +8,8 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.Conexion.DataMainActivity;
+
 public class ListadoFragment extends Fragment {
     private View view;
     private ListView lvArticulos;
@@ -21,6 +23,9 @@ public class ListadoFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_listado, container, false);
     }
-
+    public void Connect() {
+        DataMainActivity task = new DataMainActivity("selectArticulos", lvArticulos, getActivity());
+        task.execute();
+    }
 
 }

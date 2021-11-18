@@ -3,6 +3,7 @@ package com.example.myapplication.ui.main;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.myapplication.AltaFragment;
 import com.example.myapplication.ListadoFragment;
@@ -11,20 +12,19 @@ import com.example.myapplication.ModificacionFragment;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class PlaceholderFragment extends FragmentPagerAdapter {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
-
-    private PageViewModel pageViewModel;
+    private static int cantTabs = 3;
 
     public PlaceholderFragment(@NonNull FragmentManager fm) {
         super(fm);
     }
 
-
-    public static Fragment newInstance(int index) {
+    @NonNull
+    @Override
+    public Fragment getItem(int position) {
         Fragment fragment = null;
-        switch (index) {
+        switch (position) {
             case 1:
                 fragment = new AltaFragment();
                 break;
@@ -36,5 +36,10 @@ public class PlaceholderFragment extends Fragment {
                 break;
         }
         return fragment;
+    }
+
+    @Override
+    public int getCount() {
+        return cantTabs;
     }
 }
