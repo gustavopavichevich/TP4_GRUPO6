@@ -14,9 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.Conexion.DataArticuloActivity;
 import com.example.myapplication.Conexion.DataMainActivity;
-import com.example.myapplication.entidad.Articulo;
+import com.example.myapplication.entidad.Producto;
 
 public class FragmentAlta extends Fragment {
     private Button btnAgregar;
@@ -51,19 +50,12 @@ public class FragmentAlta extends Fragment {
                 }
 
                 try {
-          //          Integer id = Integer.parseInt(txtId.getText().toString());
 
-         /*           Articulo art = new DataArticuloActivity(id).execute().get();
-                    if (art != null) {
-                        Toast.makeText(getActivity(), "El ID ingresado ya existe", Toast.LENGTH_SHORT).show();
-                        return;
-                    }*/
-
-                    Articulo _art = new Articulo(txtNombre.getText().toString(),
+                    Producto _art = new Producto(txtNombre.getText().toString(),
                             Integer.parseInt(txtStock.getText().toString()), spinnerCat.getSelectedItemPosition() +1,null);
 
-                    DataMainActivity InsertArticulo = new DataMainActivity("insertArticulo",_art);
-                    String resultado = InsertArticulo.execute().get();
+                    DataMainActivity InsertProducto = new DataMainActivity("insertProducto",_art);
+                    String resultado = InsertProducto.execute().get();
                     TraerMaximo();
                     txtNombre.setText("", TextView.BufferType.EDITABLE);
                     txtStock.setText("",TextView.BufferType.EDITABLE);
@@ -86,4 +78,5 @@ public class FragmentAlta extends Fragment {
         DataMainActivity traeMax = new DataMainActivity("traeMax", txtId, getActivity());
         traeMax.execute();
     }
+
 }

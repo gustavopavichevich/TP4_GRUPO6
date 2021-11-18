@@ -2,26 +2,26 @@ package com.example.myapplication.Conexion;
 
 import android.os.AsyncTask;
 
-import com.example.myapplication.entidad.Articulo;
+import com.example.myapplication.entidad.Producto;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DataArticuloActivity extends AsyncTask<String, Void, Articulo> {
+public class DataProductoActivity extends AsyncTask<String, Void, Producto> {
 
     private int id;
 
-    private Articulo articulo;
+    private Producto producto;
 
-    public DataArticuloActivity(int id) {
+    public DataProductoActivity(int id) {
         this.id = id;
     }
 
     @Override
-    protected Articulo doInBackground(String... strings) {
-        articulo = null;
+    protected Producto doInBackground(String... strings) {
+        producto = null;
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -30,16 +30,19 @@ public class DataArticuloActivity extends AsyncTask<String, Void, Articulo> {
             ResultSet rs = st.executeQuery("SELECT * FROM articulo WHERE id = " + id);
 
             while (rs.next()) {
-                articulo = new Articulo();
-                articulo.setId(rs.getInt("id"));
-                articulo.setNombre(rs.getString("nombre"));
-                articulo.setStock(rs.getInt("stock"));
-                articulo.setIdCategoria(rs.getInt("idCategoria"));
+                producto = new Producto();
+                producto.setId(rs.getInt("id"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setStock(rs.getInt("stock"));
+                producto.setIdCategoria(rs.getInt("idCategoria"));
+                rs.close();
+                st.close();
+                con.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return articulo;
+        return producto;
     }
 }

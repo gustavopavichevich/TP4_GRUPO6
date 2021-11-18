@@ -39,7 +39,7 @@
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/tvIdArticulo"
+                    android:id="@+id/tvIdProducto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ID"
@@ -50,8 +50,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:labelFor="@id/tvIdArticulo"
+                    android:labelFor="@id/tvIdProducto"
                     android:background="@color/white"
+                    android:textColor="@color/black"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

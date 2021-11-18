@@ -2,7 +2,7 @@ package com.example.myapplication.entidad;
 
 import java.io.Serializable;
 
-public class Articulo implements Serializable {
+public class Producto implements Serializable {
 
     private int id;
     private String nombre;
@@ -10,18 +10,18 @@ public class Articulo implements Serializable {
     private int idCategoria;
     private Categoria categoria;
 
-    public Articulo(){
+    public Producto(){
 
     }
 
-    public Articulo( String nombre, int stock, int idCategoria, Categoria categoria) {
+    public Producto(String nombre, int stock, int idCategoria, Categoria categoria) {
      //   this.id = id;
         this.nombre = nombre;
         this.stock = stock;
         this.idCategoria = idCategoria;
         this.categoria =categoria;
     }
-    public Articulo( int id, String nombre, int stock, int idCategoria, Categoria categoria) {
+    public Producto(int id, String nombre, int stock, int idCategoria, Categoria categoria) {
            this.id = id;
         this.nombre = nombre;
         this.stock = stock;
@@ -67,7 +67,7 @@ public class Articulo implements Serializable {
 
     @Override
     public String toString() {
-        return "Articulo{" +
+        return "Producto{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", stock=" + stock +
