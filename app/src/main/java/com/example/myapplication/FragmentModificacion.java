@@ -51,6 +51,7 @@ public class FragmentModificacion extends Fragment {
                         Toast.makeText(getActivity(), "Debe ingresar un ID", Toast.LENGTH_LONG).show();
                         return;
                     }
+                    txtID.clearFocus();
                     Integer id = Integer.parseInt(txtID.getText().toString());
                     Articulo art = new DataArticuloActivity(id).execute().get();
                     if (art == null) {

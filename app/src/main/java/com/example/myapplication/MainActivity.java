@@ -1,11 +1,14 @@
 package com.example.myapplication;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Bundle;
+
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayout.Tab;
+
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
@@ -22,9 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void cargarViewPager(){
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPagerAdapter = new ViewPagerAdapter( getSupportFragmentManager());
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
-
         tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
     }
