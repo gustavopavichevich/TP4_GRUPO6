@@ -14,7 +14,7 @@ import com.example.myapplication.Conexion.DataMainActivity;
 
 public class FragmentListado extends Fragment {
     private View view;
-    private ListView lvArticulos;
+    private ListView lvProductos;
     public static final String titulo = "Listado";
 
     public static FragmentListado newInstance() {
@@ -24,13 +24,13 @@ public class FragmentListado extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_listado, container, false);
-        lvArticulos = (ListView) view.findViewById(R.id.lvarticulo);
+        lvProductos = (ListView) view.findViewById(R.id.lvProductos);
         Connect();
         return view;
     }
 
     public void Connect() {
-        DataMainActivity task = new DataMainActivity("selectArticulos", lvArticulos, getActivity());
+        DataMainActivity task = new DataMainActivity("selectProducto", lvProductos, getActivity());
         task.execute();
     }
 

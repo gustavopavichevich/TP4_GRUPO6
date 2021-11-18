@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.Conexion.DataArticuloActivity;
+import com.example.myapplication.Conexion.DataProductoActivity;
 import com.example.myapplication.Conexion.DataMainActivity;
-import com.example.myapplication.entidad.Articulo;
+import com.example.myapplication.entidad.Producto;
 
 public class FragmentModificacion extends Fragment {
     public static final String titulo = "Modificación";
@@ -53,13 +53,14 @@ public class FragmentModificacion extends Fragment {
                     }
                     txtID.clearFocus();
                     Integer id = Integer.parseInt(txtID.getText().toString());
-                    Articulo art = new DataArticuloActivity(id).execute().get();
-                    if (art == null) {
+                    Producto producto = new DataProductoActivity(id).execute().get();
+                    spinnerCat.setSelection(producto.getIdCategoria()-1);
+                    if (producto == null) {
                         Toast.makeText(getActivity(), "El ID ingresado no existe", Toast.LENGTH_LONG).show();
                         return;
                     }
                     cargarSpinner();
-                    SetearCamposArticulo(art);
+                    SetearCamposProductos(producto);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -79,9 +80,9 @@ public class FragmentModificacion extends Fragment {
                     String nombre = txtNombre.getText().toString();
                     Integer stock = Integer.parseInt(txtStock.getText().toString());
                     Integer idCategoria = spinnerCat.getSelectedItemPosition() + 1;
-                    Articulo articulo = new Articulo(id, nombre, stock, idCategoria, null);
+                    Producto producto = new Producto(id, nombre, stock, idCategoria, null);
                     try {
-                        DataMainActivity modificacion = new DataMainActivity("updateArticulo", articulo);
+                        DataMainActivity modificacion = new DataMainActivity("updateProducto", producto);
                         String resultado = modificacion.execute().get();
                         Toast.makeText(getActivity(), resultado, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
@@ -95,25 +96,14 @@ public class FragmentModificacion extends Fragment {
         return view;
     }
 
-    private void SetearCamposArticulo(Articulo articulo) {
-        txtNombre.setText(articulo.getNombre());
-        txtStock.setText(articulo.getStock().toString());
+    private void SetearCamposProductos(Producto producto) {
+        txtNombre.setText(producto.getNombre());
+        txtStock.setText(producto.getStock().toString());
     }
 
     public void cargarSpinner() {
         DataMainActivity carga = new DataMainActivity("selectCategorias", spinnerCat, getActivity());
         carga.execute();
     }
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        // Refresh tab data:
-        if (getFragmentManager() != null) {
-            getFragmentManager()
-                    .beginTransaction()
-                    .detach(this)
-                    .attach(this)
-                    .commit();
-        }
-    }
+
 }

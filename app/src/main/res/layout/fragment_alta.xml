@@ -28,7 +28,7 @@
             tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/tvIdArticulo"
+                android:id="@+id/tvIdProducto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ID"
@@ -46,7 +46,7 @@
                 android:enabled="false"
                 android:inputType="textPersonName"
                 android:layout_marginTop="5dp"
-                android:labelFor="@id/tvIdArticulo"
+                android:labelFor="@id/tvIdProducto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
