@@ -1,28 +1,32 @@
 package com.example.myapplication.entidad;
 
-public class Articulo {
+import java.io.Serializable;
+
+public class Articulo implements Serializable {
 
     private int id;
     private String nombre;
     private int stock;
-    private int categoria;
+    private int idCategoria;
+    private Categoria categoria;
 
     public Articulo(){
 
     }
 
-    public Articulo(int id, String nombre, int stock, int categoria) {
+    public Articulo(int id, String nombre, int stock, int idCategoria, Categoria categoria) {
         this.id = id;
         this.nombre = nombre;
         this.stock = stock;
-        this.categoria = categoria;
+        this.idCategoria = idCategoria;
+        this.categoria =categoria;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,19 +38,35 @@ public class Articulo {
         this.nombre = nombre;
     }
 
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
-    public int getCategoria() {
+    public Integer getIdCategoria() { return idCategoria; }
+
+    public void setIdCategoria(Integer idCategoria) { this.idCategoria = idCategoria; }
+
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(int categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return "Articulo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", stock=" + stock +
+                ", idCategoria=" + idCategoria +
+                ", categoria=" + categoria +
+                '}';
+    }
+
 }

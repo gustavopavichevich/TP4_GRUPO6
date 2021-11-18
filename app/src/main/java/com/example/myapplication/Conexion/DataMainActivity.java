@@ -2,19 +2,13 @@ package com.example.myapplication.Conexion;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.example.myapplication.AltaFragment;
-import com.example.myapplication.ListadoFragment;
 import com.example.myapplication.adapter.ArticuloAdapter;
-
-import com.example.myapplication.adapter.CategoriaAdapter;
 import com.example.myapplication.entidad.Articulo;
 import com.example.myapplication.entidad.Categoria;
-
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,31 +16,26 @@ import java.sql.ResultSet;
 import java.sql.SQLDataException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class DataMainActivity extends AsyncTask<String, Void, String> {
 
-    private  ListView lvArticulo;
-    private final Context context;
+    private ListView lvArticulo;
+    private Context context;
     private String accion = null;
 
-   // private final Articulo articulo = new Articulo();
-    private Categoria categoria = new Categoria();
-    private Spinner s_categoria;
-    private static String result2;
     private Articulo articulo;
-    private Categoria cat;
-    private List<Articulo> listaArticulos = new ArrayList<Articulo>();
-    private List<Categoria> listaCategorias = new ArrayList<Categoria>();
-
+    private Categoria categoria;
+    private Spinner spinnerCat;
+    private static String result2;
+    private static final ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
+    private static final ArrayList<String> listaCategorias = new ArrayList<String>();
 
     //Recibe por constructor el textview
     //Constructor
-    public DataMainActivity(String accion, Spinner sp , Context ct) {
+    public DataMainActivity(String accion, Articulo articulo) {
         this.accion = accion;
-        s_categoria = sp;
-        context = ct;
+        this.articulo = articulo;
     }
 
     public DataMainActivity(String accion, ListView lv, Context ct) {
@@ -55,8 +44,15 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
         context = ct;
     }
 
+    public DataMainActivity(String accion, Spinner spinnerCat, Context ct) {
+        this.accion = accion;
+        this.spinnerCat = spinnerCat;
+        this.context = ct;
+    }
+
     @Override
     protected String doInBackground(String... urls) {
+        listaArticulos.clear();
         String response = "";
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -65,48 +61,49 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
             ResultSet rs;
             result2 = " ";
             switch (accion) {
-                case "select":
+                case "selectArticulos":
                     rs = st.executeQuery("SELECT * FROM articulo");
-
+                    Articulo articulo;
                     while (rs.next()) {
-
                         articulo = new Articulo();
                         articulo.setId(rs.getInt("id"));
                         articulo.setNombre(rs.getString("nombre"));
                         articulo.setStock(rs.getInt("stock"));
-                        articulo.setCategoria(rs.getInt("idCategoria"));
+                        articulo.setIdCategoria(rs.getInt("idCategoria"));
                         listaArticulos.add(articulo);
                     }
                     response = "Conexion exitosa";
                     break;
-                case "selectIDart":
-                    rs = st.executeQuery("SELECT * FROM articulo where id = " + articulo.getId());
-                    while (rs.next()) {
-                        articulo = new Articulo();
-                        articulo.setId(rs.getInt("id"));
-                        articulo.setNombre(rs.getString("nombre"));
-                        articulo.setStock(rs.getInt("stock"));
-                        articulo.setCategoria(rs.getInt("idCategoria"));
-                    }
-                    response = "Conexion exitosa";
+                case "insertArticulo":
+                    st.executeUpdate("INSERT INTO articulo(id,nombre,stock,idCategoria) VALUES(" +
+                            this.articulo.getId() + ",'" + this.articulo.getNombre() + "'," + this.articulo.getStock() + "," + this.articulo.getIdCategoria() + ")");
                     break;
-                case "selectIdCategoría":
+                case "selectIdCategoria":
                     rs = st.executeQuery("SELECT * FROM categoria where id = " + categoria.getId());
                     while (rs.next()) {
-                        cat = new Categoria();
-                        cat.setId(rs.getInt("id"));
-                        cat.setDescripcion(rs.getString("descripcion"));
+                        categoria = new Categoria();
+                        categoria.setId(rs.getInt("id"));
+                        categoria.setDescripcion(rs.getString("descripcion"));
                     }
                     response = "Conexion exitosa";
                     break;
-                case "selectTodasCategorías":
+                case "selectCategorias":
+                    listaCategorias.clear();
                     rs = st.executeQuery("SELECT * FROM categoria");
                     while (rs.next()) {
-                        cat = new Categoria();
-                        cat.setId(rs.getInt("id"));
-                        cat.setDescripcion(rs.getString("descripcion"));
-
+                        categoria = new Categoria();
+                        categoria.setId(rs.getInt("id"));
+                        categoria.setDescripcion(rs.getString("descripcion"));
+                        listaCategorias.add(categoria.getDescripcion());
                     }
+                    response = "Conexion exitosa";
+                    break;
+                case "uptadteArticulo":
+                    st.executeUpdate("UPDATE articulo SET " +
+                            "nombre = '" + this.articulo.getNombre() + "', " +
+                            "stock = " + this.articulo.getStock() + ", " +
+                            "idCategoria = " + this.articulo.getIdCategoria() + ", " +
+                            "WHERE id = " + this.articulo.getId());
                     response = "Conexion exitosa";
                     break;
 
@@ -127,43 +124,18 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String response) {
         try {
             switch (accion) {
-                case "select":
+                case "selectArticulos":
                     ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
-
-                    //lvArticulo.setAdapter(adapter);
-
-
-                    ListadoFragment flistado = new ListadoFragment();
-                    Bundle bundle = new Bundle();
-
-                    bundle.putSerializable("ListadoArticulos", adapter);
-                    flistado.setArguments(bundle);
-                    flistado.onStart();
-
-
+                    lvArticulo.setAdapter(adapter);
                     break;
-
-                case "selectTodasCategorías":
-                    CategoriaAdapter adapterCate = new CategoriaAdapter(context, listaCategorias);
-                    s_categoria.setAdapter(adapterCate);
-                    //lvArticulo.setAdapter(adapter);
-
-                    //Se lo envio al activity
-                  AltaFragment falta = new AltaFragment();
-                    Bundle bundle2 = new Bundle();
-                    bundle2.putSerializable("ListadoCategorias", adapterCate);
-                    falta.setArguments(bundle2);
-
-                    /*ListadoFragment flistado = new ListadoFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("ListadoArticulos", adapter);
-                    flistado.setArguments(bundle);*/
+                case "selectCategorias":
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, listaCategorias);
+                    spinnerCat.setAdapter(adapter2);
                     break;
                 default:
                     break;
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
         }

@@ -2,50 +2,30 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 
-import com.example.myapplication.Conexion.DataMainActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
-import android.widget.Spinner;
-
-import com.example.myapplication.ui.main.SectionsPagerAdapter;
-import com.example.myapplication.databinding.ActivityMainBinding;
-
 public class MainActivity extends AppCompatActivity {
-
-  //  private ActivityMainBinding binding;
-  //  private ListView lvArticulos;
- //   private Spinner spinner;
+    private ViewPager viewPager;
+    private ViewPagerAdapter viewPagerAdapter;
+    private TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-      binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        //Connect();
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = MainActivity.viewPager;
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = binding.tabs;
-        tabs.setupWithViewPager(viewPager);
-  //      lvArticulos = (ListView) this.findViewById(R.id.lvarticulo);
-  //      spinner = (Spinner) this.findViewById(R.id.s_categoria);
-
+        setContentView(R.layout.activity_main);
+        tabs = (TabLayout) findViewById(R.id.tabs);
+        cargarViewPager();
     }
-    public void Connect() {
-  /*      DataMainActivity task = new DataMainActivity("select", lvArticulos, this);
-        DataMainActivity task2 = new DataMainActivity("selectTodasCategorías", spinner, this);
-        task2.execute();
-        task.execute();*/
+
+    private void cargarViewPager(){
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPagerAdapter = new ViewPagerAdapter( getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+
+        tabs = (TabLayout) findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
     }
 }
