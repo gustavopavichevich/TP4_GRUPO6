@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.entidad.Articulo;
 import com.example.myapplication.entidad.Categoria;
 
 import java.io.Serializable;
@@ -28,7 +26,7 @@ public class CategoriaAdapter extends ArrayAdapter<Categoria> implements Seriali
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View item = inflater.inflate(R.layout.fragment_alta, null);
-        Spinner spinner = item.findViewById(R.id.s_categoria);
+        Spinner spinner = item.findViewById(R.id.spinnerCategoria);
       //  spinner.setAdapter(getItem(position).ge);
 
      /*   TextView tvNombre = (TextView) item.findViewById(R.id.nombreLT);

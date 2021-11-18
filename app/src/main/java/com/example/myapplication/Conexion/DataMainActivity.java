@@ -37,10 +37,9 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
 
     //Recibe por constructor el textview
     //Constructor
-    public DataMainActivity(String accion, Spinner sp , Context ct) {
+    public DataMainActivity(String accion, Articulo articulo) {
         this.accion = accion;
-        spinner = sp;
-        context = ct;
+        this.articulo = articulo;
     }
 
     public DataMainActivity(String accion, ListView lv, Context ct) {
@@ -64,7 +63,6 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                     rs = st.executeQuery("SELECT * FROM articulo");
                     Articulo articulo;
                     while (rs.next()) {
-
                         articulo = new Articulo();
                         articulo.setId(rs.getInt("id"));
                         articulo.setNombre(rs.getString("nombre"));
@@ -74,17 +72,17 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                     }
                     response = "Conexion exitosa";
                     break;
-//                case "selectIDart":
-//                    rs = st.executeQuery("SELECT * FROM articulo where id = " + articulo.getId());
-//                    while (rs.next()) {
-//                        articulo = new Articulo();
-//                        articulo.setId(rs.getInt("id"));
-//                        articulo.setNombre(rs.getString("nombre"));
-//                        articulo.setStock(rs.getInt("stock"));
-//                        articulo.setCategoria(rs.getInt("idCategoria"));
-//                    }
-//                    response = "Conexion exitosa";
-//                    break;
+                case "selectIDart":
+                    rs = st.executeQuery("SELECT * FROM articulo where id = " + this.articulo.getId());
+                    while (rs.next()) {
+                        this.articulo.setId(rs.getInt("id"));
+                        this.articulo.setNombre(rs.getString("nombre"));
+                        this.articulo.setStock(rs.getInt("stock"));
+                        this.articulo.setCategoria(rs.getInt("idCategoria"));
+                    }
+                    response = "Conexion exitosa";
+
+                    break;
 //                case "selectIdCategoría":
 //                    rs = st.executeQuery("SELECT * FROM categoria where id = " + categoria.getId());
 //                    while (rs.next()) {
@@ -126,6 +124,10 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                     ArticuloAdapter adapter = new ArticuloAdapter(context, listaArticulos);
                     lvArticulo.setAdapter(adapter);
 
+                    break;
+                case "selectIDart":
+                    ArticuloAdapter adapter = new ArticuloAdapter(context, articulo);
+                    articulo.setAdapter(adapter);
                     break;
 
                 case "selectTodasCategorías":

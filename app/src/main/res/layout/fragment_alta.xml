@@ -20,7 +20,7 @@
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/lblID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ID"
@@ -29,7 +29,7 @@
             android:textStyle="bold"/>
 
         <EditText
-            android:id="@+id/et_id"
+            android:id="@+id/txtID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -46,7 +46,7 @@
             android:textStyle="bold"/>
 
         <EditText
-            android:id="@+id/et_nombre"
+            android:id="@+id/txtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -63,7 +63,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/et_stock"
+            android:id="@+id/txtStock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -80,7 +80,7 @@
             android:textSize="20sp" />
 
         <Spinner
-            android:id="@+id/s_categoria"
+            android:id="@+id/spinnerCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -93,7 +93,7 @@
             tools:ignore="MissingConstraints">
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/btnAgregar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#937A7A"

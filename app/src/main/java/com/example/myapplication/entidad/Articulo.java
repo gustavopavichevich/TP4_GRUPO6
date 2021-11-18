@@ -5,16 +5,22 @@ public class Articulo {
     private int id;
     private String nombre;
     private int stock;
-    private int categoria;
+    private int idCategoria;
+    private Categoria categoria;
 
     public Articulo(){
 
     }
 
-    public Articulo(int id, String nombre, int stock, int categoria) {
+    public Articulo(int id, String nombre, int stock, int idCategoria, Categoria categoria) {
         this.id = id;
         this.nombre = nombre;
         this.stock = stock;
+        this.idCategoria = idCategoria;
+        this.categoria =categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -42,11 +48,11 @@ public class Articulo {
         this.stock = stock;
     }
 
-    public int getCategoria() {
-        return categoria;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
     public void setCategoria(int categoria) {
-        this.categoria = categoria;
+        this.idCategoria = categoria;
     }
 }
