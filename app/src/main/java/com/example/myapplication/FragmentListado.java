@@ -12,11 +12,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.Conexion.DataMainActivity;
 
-public class ListadoFragment extends Fragment {
+public class FragmentListado extends Fragment {
     private View view;
     private ListView lvArticulos;
     public static final String titulo = "Listado";
-    public static ListadoFragment newInstance() {return new ListadoFragment();}
+    public static FragmentListado newInstance() {return new FragmentListado();}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

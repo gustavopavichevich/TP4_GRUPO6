@@ -17,19 +17,19 @@ import com.example.myapplication.Conexion.DataArticuloActivity;
 import com.example.myapplication.Conexion.DataMainActivity;
 import com.example.myapplication.entidad.Articulo;
 
-public class ModificacionFragment extends Fragment {
+public class FragmentModificacion extends Fragment {
     public static final String titulo = "Modificación";
 
     private View view;
     private EditText txtID;
+    private EditText txtStock;
+    private EditText txtNombre;
+    private Spinner spinnerCat;
     private Button btnBuscar;
     private Button btnModificar;
-    private EditText txtNombre;
-    private EditText txtStock;
-    private Spinner spinnerCat;
 
-    public static ModificacionFragment newInstance() {
-        return new ModificacionFragment();
+    public static FragmentModificacion newInstance() {
+        return new FragmentModificacion();
     }
 
     @Nullable

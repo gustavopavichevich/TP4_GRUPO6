@@ -9,33 +9,34 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.Conexion.DataArticuloActivity;
 import com.example.myapplication.Conexion.DataMainActivity;
 import com.example.myapplication.entidad.Articulo;
 
-public class AltaFragment extends Fragment {
+public class FragmentAlta extends Fragment {
     private Button btnAgregar;
-    private EditText txtId, txtNombre, txtStock, txtIdCategoria;
+    private EditText txtId, txtNombre, txtStock;
     private Spinner spinnerCat;
     private View view;
     public static final String titulo = "Alta";
 
-    public static AltaFragment newInstance() {
-        return new AltaFragment();
+    public static FragmentAlta newInstance() {
+        return new FragmentAlta();
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_alta, container, false);
+        view = inflater.inflate(R.layout.fragment_alta, container, false);
         txtId = (EditText) view.findViewById(R.id.txtID);
         txtNombre = (EditText) view.findViewById(R.id.txtNombre);
         txtStock = (EditText)view.findViewById(R.id.txtStock);
 
         spinnerCat = (Spinner) view.findViewById(R.id.spinnerCategoria);
-        btnAgregar = (Button) view.findViewById(R.id.btnModificar);
+        btnAgregar = (Button) view.findViewById(R.id.btnAgregar);
         cargarSpinner();
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {

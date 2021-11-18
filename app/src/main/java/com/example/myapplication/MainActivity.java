@@ -9,7 +9,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
-    private SectionsPagerAdapter sectionsPagerAdapter;
+    private ViewPagerAdapter viewPagerAdapter;
     private TabLayout tabs;
 
     @Override
@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void cargarViewPager(){
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        sectionsPagerAdapter = new SectionsPagerAdapter( getSupportFragmentManager());
-        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPagerAdapter = new ViewPagerAdapter( getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
 
         tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
