@@ -34,7 +34,7 @@ public class DataArticuloActivity extends AsyncTask<String, Void, Articulo> {
                 articulo.setId(rs.getInt("id"));
                 articulo.setNombre(rs.getString("nombre"));
                 articulo.setStock(rs.getInt("stock"));
-                articulo.setCategoria(rs.getInt("idCategoria"));
+                articulo.setIdCategoria(rs.getInt("idCategoria"));
             }
         } catch (Exception e) {
             e.printStackTrace();

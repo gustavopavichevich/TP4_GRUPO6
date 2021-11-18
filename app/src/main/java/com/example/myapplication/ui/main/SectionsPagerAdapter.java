@@ -8,12 +8,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.myapplication.AltaFragment;
+import com.example.myapplication.ListadoFragment;
+import com.example.myapplication.ModificacionFragment;
 import com.example.myapplication.R;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    @StringRes
-    private static final int[] TAB_TITLES = new int[] {R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private static int cantTabs = 3;
 
     public SectionsPagerAdapter(@NonNull FragmentManager fm) {
@@ -26,17 +26,26 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return AltaFragment.newInstance();
             case 2:
-                //return ModificacionFragment.newInstance();
+                return ModificacionFragment.newInstance();
             case 3:
-                //return ListadoFragment.newInstance();
+                return ListadoFragment.newInstance();
         }
         return null;
     }
 
-    @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return super.getPageTitle(TAB_TITLES[position]);
+        switch (position) {
+            case 0:
+                return "Alta";
+
+            case 1:
+                return "Modificación";
+
+            case 2:
+                return "Listado";
+        }
+        return super.getPageTitle(position);
     }
 
     @Override

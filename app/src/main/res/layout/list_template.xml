@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/nombreLT"
+        android:id="@+id/nombreArt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black" />
+
     <TextView
-        android:id="@+id/stockLT"
+        android:id="@+id/idArticulo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="italic"
-        android:textColor="@color/purple_700"/>
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/stockArt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/idCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

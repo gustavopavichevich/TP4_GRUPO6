@@ -1,64 +1,106 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ModificacionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.example.myapplication.Conexion.DataArticuloActivity;
+import com.example.myapplication.Conexion.DataMainActivity;
+import com.example.myapplication.entidad.Articulo;
+
 public class ModificacionFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private View view;
+    private EditText txtID;
+    private Button btnBuscar;
+    private Button btnModificar;
+    private EditText txtNombre;
+    private EditText txtStock;
+    private Spinner spinnerCat;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ModificacionFragment() {
-        // Required empty public constructor
+    public static ModificacionFragment newInstance() {
+        return new ModificacionFragment();
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ModificacionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ModificacionFragment newInstance(String param1, String param2) {
-        ModificacionFragment fragment = new ModificacionFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.fragment_modificacion, container, false);
+
+        txtID = view.findViewById(R.id.txtID);
+        txtNombre = view.findViewById(R.id.txtNombre);
+        txtStock = view.findViewById(R.id.txtStock);
+        spinnerCat = view.findViewById(R.id.spinnerCategoria);
+        btnBuscar = view.findViewById(R.id.btnBuscar);
+        btnModificar = view.findViewById(R.id.btnModificar);
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (txtID.getText().toString().isEmpty()) {
+                        Toast.makeText(getActivity(), "Debe ingresar un ID", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    Integer id = Integer.parseInt(txtID.getText().toString());
+                    Articulo art = new DataArticuloActivity(id).execute().get();
+                    if (art == null) {
+                        Toast.makeText(getActivity(), "El ID ingresado no existe", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    cargarSpinner();
+                    SetearCamposArticulo(art);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        btnModificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (txtID.getText().toString().isEmpty() || txtNombre.getText().toString().isEmpty() || txtStock.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "Ingrese todos los campos antes de avanzar", Toast.LENGTH_SHORT).show();
+
+
+                } else {
+                    Integer id = Integer.parseInt(txtID.getText().toString());
+                    String nombre = txtNombre.getText().toString();
+                    Integer stock = Integer.parseInt(txtStock.getText().toString());
+                    Integer idCategoria = spinnerCat.getSelectedItemPosition() + 1;
+                    Articulo articulo = new Articulo(id, nombre, stock, idCategoria, null);
+                    try {
+                        DataMainActivity modificacion = new DataMainActivity("updateArticulo", articulo);
+                        String resultado = modificacion.execute().get();
+                        Toast.makeText(getActivity(), resultado, Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), "No pudimos actualizar el artículo", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_modificacion, container, false);
+    private void SetearCamposArticulo(Articulo articulo) {
+        txtNombre.setText(articulo.getNombre());
+        txtStock.setText(articulo.getStock().toString());
+    }
+
+    public void cargarSpinner() {
+        DataMainActivity carga = new DataMainActivity("selectCategorias", spinnerCat, getActivity());
+        carga.execute();
     }
 }

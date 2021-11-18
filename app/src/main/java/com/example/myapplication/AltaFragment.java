@@ -34,7 +34,7 @@ public class AltaFragment extends Fragment {
         txtStock = (EditText)view.findViewById(R.id.txtStock);
 
         spinnerCat = (Spinner) view.findViewById(R.id.spinnerCategoria);
-        btnAgregar = (Button) view.findViewById(R.id.btnAgregar);
+        btnAgregar = (Button) view.findViewById(R.id.btnModificar);
         cargarSpinner();
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {

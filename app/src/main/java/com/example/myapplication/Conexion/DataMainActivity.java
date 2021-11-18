@@ -28,8 +28,8 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
     private Categoria categoria;
     private Spinner spinnerCat;
     private static String result2;
-    private static ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
-    private static ArrayList<String> listaCategorias = new ArrayList<String>();
+    private static final ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
+    private static final ArrayList<String> listaCategorias = new ArrayList<String>();
 
     //Recibe por constructor el textview
     //Constructor
@@ -43,6 +43,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
         lvArticulo = lv;
         context = ct;
     }
+
     public DataMainActivity(String accion, Spinner spinnerCat, Context ct) {
         this.accion = accion;
         this.spinnerCat = spinnerCat;
@@ -68,7 +69,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                         articulo.setId(rs.getInt("id"));
                         articulo.setNombre(rs.getString("nombre"));
                         articulo.setStock(rs.getInt("stock"));
-                        articulo.setCategoria(rs.getInt("idCategoria"));
+                        articulo.setIdCategoria(rs.getInt("idCategoria"));
                         listaArticulos.add(articulo);
                     }
                     response = "Conexion exitosa";
@@ -79,7 +80,7 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                         this.articulo.setId(rs.getInt("id"));
                         this.articulo.setNombre(rs.getString("nombre"));
                         this.articulo.setStock(rs.getInt("stock"));
-                        this.articulo.setCategoria(rs.getInt("idCategoria"));
+                        this.articulo.setIdCategoria(rs.getInt("idCategoria"));
                     }
                     response = "Conexion exitosa";
 
@@ -105,8 +106,15 @@ public class DataMainActivity extends AsyncTask<String, Void, String> {
                         categoria.setId(rs.getInt("id"));
                         categoria.setDescripcion(rs.getString("descripcion"));
                         listaCategorias.add(categoria.getDescripcion());
-
                     }
+                    response = "Conexion exitosa";
+                    break;
+                case "uptadteArticulo":
+                    st.executeUpdate("UPDATE articulo SET " +
+                            "nombre = '" + this.articulo.getNombre() + "', " +
+                            "stock = " + this.articulo.getStock() + ", " +
+                            "idCategoria = " + this.articulo.getIdCategoria() + ", " +
+                            "WHERE id = " + this.articulo.getId());
                     response = "Conexion exitosa";
                     break;
 

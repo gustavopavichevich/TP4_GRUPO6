@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.Conexion.DataMainActivity;
@@ -14,14 +16,14 @@ public class ListadoFragment extends Fragment {
     private View view;
     private ListView lvArticulos;
 
-    public static ListadoFragment newInstance(String param1, String param2) {
-        return new ListadoFragment();
-    }
+    public static ListadoFragment newInstance() {return new ListadoFragment();}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_listado, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_listado, container, false);
+        lvArticulos = (ListView) view.findViewById(R.id.lvarticulo);
+        Connect();
+        return view;
     }
     public void Connect() {
         DataMainActivity task = new DataMainActivity("selectArticulos", lvArticulos, getActivity());

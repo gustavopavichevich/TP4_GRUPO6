@@ -1,6 +1,8 @@
 package com.example.myapplication.entidad;
 
-public class Categoria {
+import java.io.Serializable;
+
+public class Categoria implements Serializable {
 
     private int id;
     private String descripcion;
@@ -27,5 +29,13 @@ public class Categoria {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
 }
