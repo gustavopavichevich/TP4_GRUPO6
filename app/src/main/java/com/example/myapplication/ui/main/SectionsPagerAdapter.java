@@ -8,8 +8,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.myapplication.AltaFragment;
-import com.example.myapplication.ListadoFragment;
-import com.example.myapplication.ModificacionFragment;
 import com.example.myapplication.R;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -28,9 +26,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return AltaFragment.newInstance();
             case 2:
-                return ModificacionFragment.newInstance();
+                //return ModificacionFragment.newInstance();
             case 3:
-                return ListadoFragment.newInstance();
+                //return ListadoFragment.newInstance();
         }
         return null;
     }
